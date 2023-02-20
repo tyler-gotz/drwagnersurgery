@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Avatar, Center, Container, Grid, Stack, Tabs, Text, Title, useMantineTheme } from '@mantine/core'
+import { Anchor, Avatar, Card, Center, Container, Grid, Group, Stack, Tabs, Text, Title, useMantineTheme } from '@mantine/core'
 import DrWagner from './assets/drwagner.jpg'
 
 const App = () => {
@@ -110,6 +110,40 @@ const App = () => {
                 Gallery
               </Tabs.Tab>
             </Tabs.List>
+            <Tabs.Panel value='about me'>
+              <Grid mt={15}>
+                <Grid.Col span={6}>
+                  <Card>
+                    <Title order={3} color={theme.black}>
+                      Education:
+                    </Title>
+                    <Title order={5} color='#b6b4e0' fw={800}>
+                      Board Certified General Surgeon
+                    </Title>
+                    <Text>
+                      A graduate of Medical College of Wisconsin-Milwaukee, Dr. Wagner completed his residency at the Iowa Health Systems/Iowa Methodist Medical Center, Des Moines, Iowa.  Dr. Wagner has completed over 500 robotic surgeries since 2011 and is one of the most experienced Robotic General Surgeons in Wisconsin.  Dr. Wagner has spread his wealth of knowledge in robotic surgery by hosting case observations to visiting surgeons and proctoring newly trained robotic surgeons.
+                    </Text>
+                  </Card>
+                </Grid.Col>
+                <Grid.Col span={6}>
+                  <Card>
+                    <Title order={3} color={theme.black}>
+                      Contact Me:
+                    </Title>
+                    <Group mt="md" mb="xs">
+                      <Title order={5} color='#b6b4e0' fw={800}>
+                        Phone:
+                      </Title>
+                      <Anchor href='tel:(920)-731-8131' style={{
+                        color: theme.black
+                      }}>
+                      (920)-731-8131
+                      </Anchor>
+                    </Group>
+                  </Card>
+                </Grid.Col>
+              </Grid>
+            </Tabs.Panel>
           </Tabs>
         </Grid.Col>
       </Grid>
