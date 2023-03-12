@@ -8,7 +8,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <MantineProvider
       theme={{
-        fontFamily: 'Noto Sans sans-serif',
+        fontFamily: 'Poppins',
         colorScheme: 'light'
       }}
     >

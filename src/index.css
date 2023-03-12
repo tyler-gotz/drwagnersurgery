@@ -1,3 +1,16 @@
 :root {
-    background: linear-gradient(90deg, rgba(43, 168, 144, 255) 0%, rgba(56, 109, 146, 255) 100%)
+    background: #F0EDEE
+}
+
+#home-link:hover {
+    text-decoration: none;
+}
+
+.header-link {
+    color: #F0EDEE;
+}
+
+.header-link:hover {
+    color: #EA8C55;
+    font-weight: bolder;
 }

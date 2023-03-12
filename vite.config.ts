@@ -10,7 +10,7 @@ export default defineConfig({
     tsconfigPaths(),
     VitePluginFonts({
       google: {
-        families: ['Noto Sans', 'sans-serif']
+        families: ['Poppins']
       }
     })
   ]
