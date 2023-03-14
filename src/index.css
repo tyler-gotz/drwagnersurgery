@@ -14,3 +14,12 @@
     color: #EA8C55;
     font-weight: bolder;
 }
+
+.header-mobile-link {
+    color: #0A090C;
+}
+
+.header-mobile-link:hover {
+    color: #EA8C55;
+    font-weight: bolder;
+}

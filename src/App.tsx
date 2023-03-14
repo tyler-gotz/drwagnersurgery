@@ -1,11 +1,13 @@
-import { Anchor, AppShell, Avatar, Box, Card, Flex, Grid, Group, Header, Text, Title, useMantineTheme } from '@mantine/core'
+import { Anchor, AppShell, Avatar, Box, Burger, Card, Flex, Grid, Group, Header, MediaQuery, Menu, Text, Title, useMantineTheme } from '@mantine/core'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { TbPhone } from 'react-icons/tb'
 import DrWagner from './assets/ChristopherWagner.png'
 import { Carousel } from '@mantine/carousel'
-import { useMediaQuery } from '@mantine/hooks'
+import { useDisclosure, useMediaQuery } from '@mantine/hooks'
 
 const AppHeader = ({ theme }: any) => {
+  const [opened, { toggle }] = useDisclosure(false)
+  const label = opened ? 'Close navigation' : 'Open navigation'
   return (
     <Header height={100}>
       <Flex
@@ -18,12 +20,42 @@ const AppHeader = ({ theme }: any) => {
           CHRIS WAGNER, MD
           </Title>
         </Anchor>
-        <Group>
-          <Anchor className='header-link' size='lg' href='/'>Home</Anchor>
-          <Anchor className='header-link' size='lg' href='/education'>Education</Anchor>
-          <Anchor className='header-link' size='lg' href='/videos'>Videos</Anchor>
-          <Anchor className='header-link' size='lg' href='/testimonials'>Testimonials</Anchor>
-        </Group>
+        <MediaQuery smallerThan='md' styles={{ display: 'none' }}>
+          <Group>
+            <Anchor className='header-link' size='lg' href='/'>Home</Anchor>
+            <Anchor className='header-link' size='lg' href='/education'>Education</Anchor>
+            <Anchor className='header-link' size='lg' href='/videos'>Videos</Anchor>
+            <Anchor className='header-link' size='lg' href='/testimonials'>Testimonials</Anchor>
+          </Group>
+        </MediaQuery>
+        <MediaQuery largerThan='md' styles={{ display: 'none'}}>
+          <div>
+            <Menu>
+              <Menu.Target>
+                <Burger 
+                  opened={opened} 
+                  onClick={toggle}
+                  color='#F0EDEE'
+                  aria-label={label}
+                />
+              </Menu.Target>
+              <Menu.Dropdown color='#F0EDEE'>
+                <Menu.Item>
+                  <Anchor className='header-mobile-link' size='lg' href='/'>Home</Anchor>
+                </Menu.Item>
+                <Menu.Item>
+                  <Anchor className='header-mobile-link' size='lg' href='/education'>Education</Anchor>
+                </Menu.Item>
+                <Menu.Item>
+                  <Anchor className='header-mobile-link' size='lg' href='/videos'>Videos</Anchor>
+                </Menu.Item>
+                <Menu.Item>
+                  <Anchor className='header-mobile-link' size='lg' href='/testimonials'>Testimonials</Anchor>
+                </Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
+          </div>
+        </MediaQuery>
       </Flex>
       <Box sx={() => ({
         backgroundColor: '#EA8C55',
@@ -37,12 +69,26 @@ const Home = () => {
   return (
     <Grid mt={25}>
       <Grid.Col md={3}>
-        <Avatar
-          src={DrWagner}
-          alt='Dr Wagner'
-          size={260}
-          radius={100}
-        />
+        <Flex>
+          <Avatar
+            src={DrWagner}
+            alt='Dr Wagner'
+            size={260}
+            radius={100}
+          />
+          <MediaQuery largerThan='md' styles={{ display: 'none' }}>
+            <Anchor 
+              href='tel:(920)-731-8131'
+              style={{
+                color: '#0A090C',
+                marginLeft: 70,
+                marginTop: 100,
+                fontSize: '1.2em'
+              }}>
+              <TbPhone /> (920)-731-8131
+            </Anchor>
+          </MediaQuery>
+        </Flex>
       </Grid.Col>
       <Grid.Col md={7}>
         <Title order={1} color='#166088'>About Dr. Wagner</Title>
@@ -55,15 +101,17 @@ const Home = () => {
       </Grid.Col>
       <Grid.Col md={2} />
       <Grid.Col md={3}>
-        <Anchor 
-          href='tel:(920)-731-8131' 
-          style={{
-            color: '#0A090C',
-            marginLeft: 70,
-            marginTop: 25
-          }}>
-          <TbPhone /> (920)-731-8131
-        </Anchor>
+        <MediaQuery smallerThan='md' styles={{ display: 'none' }}>
+          <Anchor 
+            href='tel:(920)-731-8131' 
+            style={{
+              color: '#0A090C',
+              marginLeft: 70,
+              marginTop: 25
+            }}>
+            <TbPhone /> (920)-731-8131
+          </Anchor>
+        </MediaQuery>
       </Grid.Col>
       <Grid.Col md={9}>
         <Text size={28} color='#7F557D'>Specialties</Text>
@@ -166,17 +214,19 @@ const Testimonials = () => {
       </Grid.Col>
       <Grid.Col md={12} mt={70}>
         <Carousel
-          slideSize="25%"
+          slideSize="33.3333%"
           breakpoints={[{ maxWidth: 'sm', slideSize: '100%', slideGap: 2 }]}
           slideGap="xl"
           align="start"
-          slidesToScroll={mobile ? 1 : 4}
+          slidesToScroll={mobile ? 1 : 2}
           controlsOffset={0}
         >
           <Carousel.Slide>
             <Card bg='#166088' padding={28}>
               <Text color='#F0EDEE' size={12}>
-                Dr. Wagner operated on my son a few years ago. He delivered the highest standard of care while making both of us feel comfortable and at ease. He was very kind, caring, informative and professional. My son had great results from his surgery. Thank you Dr. Wagner.
+                Dr. Wagner operated on my son a few years ago. He delivered the highest standard of care while 
+                making both of us feel comfortable and at ease. He was very kind, caring, informative and 
+                professional. My son had great results from his surgery. Thank you Dr. Wagner.
               </Text>
               <Text color='#F0EDEE' size={12}>
                 - Jodi B
@@ -186,10 +236,78 @@ const Testimonials = () => {
           <Carousel.Slide>
             <Card bg='#EA8C55' padding={28}>
               <Text color='#F0EDEE' size={12}>
+                I couldn’t have asked for a better surgeon than Dr Wagner. He was very personal and caring, 
+                he always made sure to explain things in ways I could understand. My well-being felt like a 
+                priority to him, and he also reached out when I was at home recovering. He definitely made my 
+                first surgical experience easier and less stressful.
+              </Text>
+              <Text color='#F0EDEE' size={12}>
+                - Emily K
+              </Text>
+            </Card>
+          </Carousel.Slide>
+          <Carousel.Slide>
+            <Card bg='#7F557D' padding={28}>
+              <Text color='#F0EDEE' size={12}>
+                Dr. Wagner removed my gallbladder about 9 years ago. He took his time to explain the risks and 
+                benefits that would come with having my gallbladder removed. He ensured that I felt safe and 
+                had all of my questions answered during the entire process. His kindness and compassion was evident. 
+              </Text>
+              <Text color='#F0EDEE' size={12}>
+                - Samantha E
+              </Text>
+            </Card>
+          </Carousel.Slide>
+          <Carousel.Slide>
+            <Card bg='#166088' padding={28}>
+              <Text color='#F0EDEE' size={12}>
+                Dr. Wagner performed my colonoscopy 5 years ago. I was struggling with some new onset symptoms and 
+                was in need of an emergent colonoscopy. He was able to fit me into his busy schedule however never 
+                appeared rushed when talking to my wife and I. He made sure to set me up with a GI specialist after 
+                my procedure to ensure I received treatment as soon as possible for my new diagnosis. His skills 
+                and fast actions are the reason I am doing so great today.
+              </Text>
+              <Text color='#F0EDEE' size={12}>
+                - Kyle E
+              </Text>
+            </Card>
+          </Carousel.Slide>
+          <Carousel.Slide>
+            <Card bg='#EA8C55' padding={28}>
+              <Text color='#F0EDEE' size={12}>
+                Dr. Wagner is truly exceptional!  When our daughter experienced a situation where she needed surgery 
+                on short notice, Dr. Wagner was referred as one of the best.  From the moment we entered the doors 
+                to the office, we felt welcomed and cared for. We appreciated how Dr. Wagner really took his time to 
+                explain the condition and treatment options. He made us feel completely at ease and confident in his 
+                abilities.  Dr. Wagner has gone above and beyond to ensure the health and wellness of our daughter and 
+                always felt we were his first priority. It’s rare to find a doctor that combines such personal touches 
+                and care for a patient as a person with outstanding quality of medical care. We would highly recommend 
+                Dr. Wagner. 
+              </Text>
+              <Text color='#F0EDEE' size={12}>
+                - Penny & Dave K.
+              </Text>
+            </Card>
+          </Carousel.Slide>
+          <Carousel.Slide>
+            <Card bg='#7F557D' padding={28}>
+              <Text color='#F0EDEE' size={12}>
                 I would highly recommend Dr. Wagner for surgery.
               </Text>
               <Text color='#F0EDEE' size={12}>
                 - Tyler G
+              </Text>
+            </Card>
+          </Carousel.Slide>
+          <Carousel.Slide>
+            <Card bg='#166088' padding={28}>
+              <Text color='#F0EDEE' size={12}>
+                Dr Wagner is an amazing doctor. He took care of my son. He was so responsive. He got involved with 
+                radiology and changed his schedule to get my son in for surgery very quickly at Mercy Hospital. He 
+                even stopped at our house to check on him. He is a very kind man with a big heart and amazing skills.
+              </Text>
+              <Text color='#F0EDEE' size={12}>
+                - Mike H
               </Text>
             </Card>
           </Carousel.Slide>
