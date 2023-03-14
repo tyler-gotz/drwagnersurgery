@@ -1,4 +1,4 @@
-import { Anchor, AppShell, Avatar, Box, Burger, Card, Flex, Grid, Group, Header, MediaQuery, Menu, Text, Title, useMantineTheme } from '@mantine/core'
+import { Anchor, AppShell, Avatar, Box, Burger, Card, Center, Flex, Grid, Group, Header, MediaQuery, Menu, Stack, Text, Title, useMantineTheme } from '@mantine/core'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { TbPhone } from 'react-icons/tb'
 import DrWagner from './assets/ChristopherWagner.png'
@@ -70,26 +70,40 @@ const Home = () => {
   return (
     <Grid mt={25}>
       <Grid.Col md={3}>
-        <Flex>
-          <Avatar
-            src={DrWagner}
-            alt='Dr Wagner'
-            size={260}
-            radius={100}
-          />
-          <MediaQuery largerThan='md' styles={{ display: 'none' }}>
-            <Anchor 
-              href='tel:(920)-731-8131'
-              style={{
-                color: '#0A090C',
-                marginLeft: 70,
-                marginTop: 100,
-                fontSize: '1.2em'
-              }}>
-              <TbPhone /> (920)-731-8131
-            </Anchor>
+        <Stack>
+          <MediaQuery smallerThan='md' styles={{ display: 'none' }}>
+            <Avatar
+              src={DrWagner}
+              alt='Dr Wagner'
+              size={260}
+              radius={100}
+            />
           </MediaQuery>
-        </Flex>
+          <MediaQuery largerThan='md' styles={{ display: 'none' }}>
+            <Center>
+              <Avatar
+                src={DrWagner}
+                alt='Dr Wagner'
+                size={260}
+                radius={100}
+              />
+            </Center>
+          </MediaQuery>
+          <MediaQuery largerThan='md' styles={{ display: 'none' }}>
+            <Center>
+              <Anchor 
+                href='tel:(920)-731-8131'
+                style={{
+                  color: '#0A090C',
+                  marginLeft: 15,
+                  marginTop: 15,
+                  fontSize: '1.2em'
+                }}>
+                <TbPhone /> (920)-731-8131
+              </Anchor>
+            </Center>
+          </MediaQuery>
+        </Stack>
       </Grid.Col>
       <Grid.Col md={7}>
         <Title order={1} color='#166088'>About Dr. Wagner</Title>
