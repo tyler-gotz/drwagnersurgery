@@ -4,6 +4,7 @@ import { TbPhone } from 'react-icons/tb'
 import DrWagner from './assets/ChristopherWagner.png'
 import { Carousel } from '@mantine/carousel'
 import { useDisclosure, useMediaQuery } from '@mantine/hooks'
+import ReactPlayer from 'react-player/youtube'
 
 const AppHeader = ({ theme }: any) => {
   const [opened, { toggle }] = useDisclosure(false)
@@ -187,9 +188,64 @@ const Education = () => {
 
 const Videos = () => {
   return (
-    <div>
-      Videos
-    </div>
+    <Grid>
+      <Grid.Col md={4}>
+        <Card bg='#7F557D'>
+          <Card.Section mb={10} p={10}>
+            <ReactPlayer 
+              url='https://www.youtube.com/watch?v=IfugNerad24' 
+              controls
+              width='100%'
+            />
+          </Card.Section>
+          <Title order={5} color='#F0EDEE'>
+            Robotic Incisional Hernia Surgery
+          </Title>
+        </Card>
+      </Grid.Col>
+      <Grid.Col md={4}>
+        <Card bg='#7F557D'>
+          <Card.Section mb={10} p={10}>
+            <ReactPlayer 
+              url='https://www.youtube.com/watch?v=9P5qkYPTgy8' 
+              controls
+              width='100%'
+            />
+          </Card.Section>
+          <Title order={5} color='#F0EDEE'>
+            Robot Assisted Sigmoid Colon Resection
+          </Title>
+        </Card>
+      </Grid.Col>
+      <Grid.Col md={4}>
+        <Card bg='#7F557D'>
+          <Card.Section mb={10} p={10}>
+            <ReactPlayer 
+              url='https://www.youtube.com/watch?v=NWN09Im88zw&feature=youtu.be' 
+              controls
+              width='100%'
+            />
+          </Card.Section>
+          <Title order={5} color='#F0EDEE'>
+            Robot Assisted Laparoscopic Hiatal Hernia Repair
+          </Title>
+        </Card>
+      </Grid.Col>
+      <Grid.Col md={4}>
+        <Card bg='#7F557D'>
+          <Card.Section mb={10} p={10}>
+            <ReactPlayer 
+              url='https://www.youtube.com/watch?v=ejoXQtn9pZQ' 
+              controls
+              width='100%'
+            />
+          </Card.Section>
+          <Title order={5} color='#F0EDEE'>
+            Robotic Inguinal Hernia Surgery
+          </Title>
+        </Card>
+      </Grid.Col>
+    </Grid>
   )
 }
 
